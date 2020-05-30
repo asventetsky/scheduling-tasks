@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  dbpostgresql:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=scheduling-tasks
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+
+  scheduling-tasks:
+    image: scheduling-tasks
+    build: ./
+    ports:
+      - "8080-8090:8080"
+    depends_on:
+      - dbpostgresql
