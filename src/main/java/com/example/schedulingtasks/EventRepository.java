@@ -1,0 +1,29 @@
+package com.example.schedulingtasks;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import javax.annotation.Resource;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
+
+import static java.lang.String.format;
+
+@Repository
+public class EventRepository {
+
+    private static final String QUERY = "INSERT INTO events (host, event_type, created_at) VALUES (?, ?, ?)";
+
+    @Resource
+    private JdbcTemplate jdbcTemplate;
+
+    public void save(String event) throws UnknownHostException {
+        jdbcTemplate.update(
+                QUERY,
+                format("Hostname: %s", InetAddress.getLocalHost().getHostName()),
+                event,
+                new Date()
+        );
+    }
+}

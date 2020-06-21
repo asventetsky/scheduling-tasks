@@ -6,9 +6,10 @@ locked_by VARCHAR(255) NOT NULL,
 PRIMARY KEY (name)
 );
 
-CREATE TABLE if not exists  events (
+CREATE TABLE if not exists events (
 id SERIAL,
-text VARCHAR(255) NOT NULL,
+host VARCHAR(255) NOT NULL,
+event_type VARCHAR(255) NOT NULL,
 created_at TIMESTAMP NOT NULL,
 PRIMARY KEY (id)
 );
