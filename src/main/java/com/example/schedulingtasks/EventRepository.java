@@ -8,8 +8,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Date;
 
-import static java.lang.String.format;
-
 @Repository
 public class EventRepository {
 
@@ -21,7 +19,7 @@ public class EventRepository {
     public void save(String event) throws UnknownHostException {
         jdbcTemplate.update(
                 QUERY,
-                format("Hostname: %s", InetAddress.getLocalHost().getHostName()),
+                InetAddress.getLocalHost().getHostName(),
                 event,
                 Thread.currentThread().getName(),
                 new Date()
