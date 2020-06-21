@@ -19,6 +19,8 @@ protected void scheduleTasks() {
     ...
 }
 ```
+`ScheduledTaskRegistrar#addScheduledTask` adds methods, annotated with `@Scheduled`, to `ScheduledThreadPoolExecutor`'s `workQueue`.<br/>
+Next, `ReschedulingRunnable#run` -> `ReschedulingRunnable#schedule` executes task and adding new task to `workQueue`.
 
 ### Results for thread pool of size 1 (default)
 | id | host | event\_type | thread | created\_at |
