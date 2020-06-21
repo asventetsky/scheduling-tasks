@@ -13,7 +13,7 @@ import static java.lang.String.format;
 @Repository
 public class EventRepository {
 
-    private static final String QUERY = "INSERT INTO events (host, event_type, created_at) VALUES (?, ?, ?)";
+    private static final String QUERY = "INSERT INTO events (host, event_type, thread, created_at) VALUES (?, ?, ?, ?)";
 
     @Resource
     private JdbcTemplate jdbcTemplate;
@@ -23,6 +23,7 @@ public class EventRepository {
                 QUERY,
                 format("Hostname: %s", InetAddress.getLocalHost().getHostName()),
                 event,
+                Thread.currentThread().getName(),
                 new Date()
         );
     }
