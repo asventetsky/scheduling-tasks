@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   dbpostgresql:
-    image: postgres
+    image: postgres:12.3
     ports:
       - "5432:5432"
     environment:
@@ -14,5 +14,7 @@ services:
     build: ./
     ports:
       - "8080-8090:8080"
+    environment:
+      - SCHEDULING_TASK_DB_URL=dbpostgresql
     depends_on:
       - dbpostgresql
